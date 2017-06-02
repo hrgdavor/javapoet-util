@@ -30,18 +30,18 @@ addField(builder, PRIVATE(), String.class, "type");
 intended declaration:
 
 ```java
-public static final PRIMARY = null;
+public static final String PRIMARY = null;
 ```
 
 normal JavaPoet
 
 ```java
 builder.addField(
-		FieldSpec.builder( String.class,"PRIMARY", Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+		FieldSpec.builder(String.class, "PRIMARY", Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
 		.initializer("return $L", varName).build() );
 ```
 
-versus with utility
+with utility
 
 ```java
 addField(builder, PUBLIC().STATIC().FINAL(), String.class, "PRIMARY", "return $L", varName);
@@ -50,20 +50,26 @@ addField(builder, PUBLIC().STATIC().FINAL(),
 	String.class, "PRIMARY", "return $L", varName);
 ```
 
-Add parameter to a method
+## Add parameter to a method
+
+intended declaration for one of the parameters:
+
+```
+...(..., boolean primitive)...
+```
+
+normal JavaPoet
 
 ```java
-// intended declaration for one of the parameters:
-method(boolean primitive)
-
-// normal JavaPoet
 method.addParameter(ParameterSpec.builder(boolean.class, "primitive").build());
+```
 
-// versus with utility
+with utility
+```java
 addParameter(method, boolean.class, "primitive");
 ```
 
-Add field with getter and setter (bean style)
+## Add field with getter and setter (bean style)
 ```java
 // intended declaration for one of the parameters:
 private boolean primitive;
