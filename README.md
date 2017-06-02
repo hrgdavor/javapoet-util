@@ -75,8 +75,7 @@ addParameter(method, boolean.class, "primitive");
 
 ## Add field with getter and setter (bean style)
 
-intended declaration for one of the parameters:
-
+intended code
 ```java
 private boolean primitive;
 public booelan isPrimitive(){ 
@@ -105,5 +104,5 @@ builder.addMethod( MethodSpec.methodBuilder("setPrimitive")
 with this utility
 
 ```java
-addBeanField(enumbuilder, boolean.class, "primitive");
+addBeanField(builder, boolean.class, "primitive");
 ```
