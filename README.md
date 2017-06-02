@@ -19,7 +19,7 @@ normal JavaPoet
 builder.addField(FieldSpec.builder( String.class, "type", Modifier.PRIVATE).build());
 ```
 
-with utility
+with this utility
 
 ```java
 addField(builder, PRIVATE(), String.class, "type");
@@ -45,7 +45,10 @@ with this utility
 
 ```java
 addField(builder, PUBLIC().STATIC().FINAL(), String.class, "PRIMARY", "return $L", varName);
-//or
+
+with this utility (different line break)
+
+```java
 addField(builder, PUBLIC().STATIC().FINAL(), 
 	String.class, "PRIMARY", "return $L", varName);
 ```
