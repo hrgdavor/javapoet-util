@@ -1,37 +1,52 @@
 
 ## checkstyle
-ignored
+using checkstyle settings from javapoet library, but ignored some rules 
  - MethodName (uppercase method names for modifier builder)
 
+# Example code-producing changes with this utility and abse for requesting changes in original javapoet
 
-Add field example
+## Add field
+intended declaration:
 
 ```java
-// intended declaration:
 private String type;
+```
 
-// normal JavaPoet
+normal JavaPoet
+
+```java
 builder.addField(FieldSpec.builder( String.class, "type", Modifier.PRIVATE).build());
+```
 
-// versus with utility
+with utility
+
+```java
 addField(builder, PRIVATE(), String.class, "type");
 ```
 
-Add field with initializer
+## Add field with initializer
+
+intended declaration:
 
 ```java
-// intended declaration:
 public static final PRIMARY = null;
+```
 
-// normal JavaPoet
+normal JavaPoet
+
+```java
 builder.addField(
-		FieldSpec.builder( String.class,"PRIMARY",Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-		.initializer("null").build() );
+		FieldSpec.builder( String.class,"PRIMARY", Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+		.initializer("return $L", varName).build() );
+```
 
-// versus with utility
-addField(builder, PUBLIC().STATIC().FINAL(), String.class, "PRIMARY", field-> {
-	field.initializer("null");
-});
+versus with utility
+
+```java
+addField(builder, PUBLIC().STATIC().FINAL(), String.class, "PRIMARY", "return $L", varName);
+//or
+addField(builder, PUBLIC().STATIC().FINAL(), 
+	String.class, "PRIMARY", "return $L", varName);
 ```
 
 Add parameter to a method
