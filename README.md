@@ -1,4 +1,4 @@
-# Utility for my personal style when using [https://github.com/square/javapoet](JavaPoet)
+# Utility for my personal style when using [JavaPoet](https://github.com/square/javapoet)
 
 ## checkstyle
 using checkstyle settings from javapoet library, but ignored some rules 
