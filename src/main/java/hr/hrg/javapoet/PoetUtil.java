@@ -1,6 +1,7 @@
 package hr.hrg.javapoet;
 
 import java.lang.reflect.Type;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.lang.model.element.Modifier;
@@ -29,6 +30,20 @@ public final class PoetUtil {
             ParameterizedTypeName.get(ClassName.get(Class.class), TN_WILDCARD);
 
     public static final ArrayTypeName TN_OBJECT_ARRAY = ArrayTypeName.of(Object.class);
+
+    static final String[] KEYWORDS = {"abstract", "assert", "boolean",
+            "break", "byte", "case", "catch", "char", "class", "const",
+            "continue", "default", "do", "double", "else", "extends", "false",
+            "final", "finally", "float", "for", "goto", "if", "implements",
+            "import", "instanceof", "int", "interface", "long", "native",
+            "new", "null", "package", "private", "protected", "public",
+            "return", "short", "static", "strictfp", "super", "switch",
+            "synchronized", "this", "throw", "throws", "transient", "true",
+            "try", "void", "volatile", "while" };
+
+    public static boolean isJavaKeyword(String keyword) {
+        return (Arrays.binarySearch(KEYWORDS, keyword) >= 0);
+    }
 
     public static ParameterizedTypeName parametrized(Class<?> clazz, TypeName... arguments) {
         return ParameterizedTypeName.get(ClassName.get(clazz), arguments);
@@ -296,11 +311,11 @@ public final class PoetUtil {
     private static void addParameter(
             MethodSpec.Builder builder,
             ModifierBuilder modifiers,
-            ParameterSpec.Builder fb) {
+            ParameterSpec.Builder param) {
 
         if (modifiers != null && !modifiers.isEmpty())
-            modifiers.to(fb);
-        builder.addParameter(fb.build());
+            modifiers.to(param);
+        builder.addParameter(param.build());
     }
 
     private static void customizeAndAddParam(
@@ -321,12 +336,12 @@ public final class PoetUtil {
 
 
     public static void addBeanfieldReadonly(
-            TypeSpec.Builder cb,
+            TypeSpec.Builder builder,
             Object type,
             String name,
             BeanCustomizer customizer) {
 
-        addBeanField(cb, toTypeName(type), name, true, false, customizer);
+        addBeanField(builder, toTypeName(type), name, true, false, customizer);
     }
 
     public static void addBeanfieldReadonly(TypeSpec.Builder cb, Object type, String name) {
@@ -334,12 +349,12 @@ public final class PoetUtil {
     }
 
     public static void addBeanField(
-            TypeSpec.Builder cb,
+            TypeSpec.Builder builder,
             Object type,
             String name,
             BeanCustomizer customizer) {
 
-        addBeanField(cb, toTypeName(type), name, true, true, customizer);
+        addBeanField(builder, toTypeName(type), name, true, true, customizer);
     }
 
     public static void addBeanField(TypeSpec.Builder cb, Object type, String name) {
