@@ -47,6 +47,7 @@ with this utility
 addField(builder, PUBLIC().STATIC().FINAL(), String.class, "PRIMARY", "return $L", varName);
 
 with this utility (different line break)
+```
 
 ```java
 addField(builder, PUBLIC().STATIC().FINAL(), 
