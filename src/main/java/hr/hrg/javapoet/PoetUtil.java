@@ -537,19 +537,14 @@ public final class PoetUtil {
         }
     }
 
-    public static void addCallSuper(
+    public static void addOtherMethodFwdParams(
             TypeSpec spec,
+            String otherMethod,
             MethodSpec.Builder method,
             Object... fields) {
 
-        // this is stupid, but necessary with current poet version
-        String name = method.build().name;
-
-        if (name.startsWith("<")) {
-            method.addCode("super(");
-        } else {
-            method.addCode("super." + name + "(");
-        }
+        method.addCode(otherMethod);
+        method.addCode("(");
 
         for (int i = 1; i < fields.length; i += 2) {
             String fieldName = (String) fields[i];
