@@ -369,7 +369,7 @@ public final class PoetUtil {
             boolean withSetter,
             BeanCustomizer customizer) {
 
-        FieldSpec.Builder field = FieldSpec.builder(type, name).addModifiers(Modifier.PRIVATE);
+        FieldSpec.Builder field = FieldSpec.builder(type, name).addModifiers(Modifier.PROTECTED);
         String methondName = null;
         String upperName = Character.toUpperCase(name.charAt(0)) + name.substring(1);
 
@@ -535,6 +535,30 @@ public final class PoetUtil {
         } else {
             addSetterParameter(method, field, customizer);
         }
+    }
+
+    public static void addCallSuper(
+            TypeSpec spec,
+            MethodSpec.Builder method,
+            Object... fields) {
+
+        // this is stupid, but necessary with current poet version
+        String name = method.build().name;
+
+        if (name.startsWith("<")) {
+            method.addCode("super(");
+        } else {
+            method.addCode("super." + name + "(");
+        }
+
+        for (int i = 1; i < fields.length; i += 2) {
+            String fieldName = (String) fields[i];
+            addParameter(method, fields[i - 1], fieldName);
+            if (i > 1)
+                method.addCode(", ");
+            method.addCode(fieldName);
+        }
+        method.addCode(");\n");
     }
 
     public static void addSetterParameter(
