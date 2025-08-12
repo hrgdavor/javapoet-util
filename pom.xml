@@ -5,7 +5,7 @@
 
     <groupId>hr.hrg.javapoet</groupId>
     <artifactId>javapoet-util</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>2.0.0</version>
     <packaging>jar</packaging>
 
     <name>javapoet-util</name>
@@ -17,25 +17,10 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.squareup</groupId>
+            <groupId>com.palantir.javapoet</groupId>
             <artifactId>javapoet</artifactId>
-            <version>1.9.0</version>
+            <version>0.7.0</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>5.14</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.8.5</version>
-            <scope>test</scope>
-        </dependency>
-
 
     </dependencies>
 
@@ -46,10 +31,10 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
+                <version>3.14.0</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>21</source>
+                    <target>21</target>
                     <optimize>true</optimize>
                     <compilerArgument>-proc:none</compilerArgument>
                 </configuration>
@@ -57,7 +42,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
-                <version>2.5</version>
+                <version>3.1.4</version>
                 <executions>
                     <execution>
                         <id>m2</id>
@@ -82,7 +67,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
+                <version>3.3.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -95,12 +80,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.17</version>
+                <version>3.6.0</version>
                 <dependencies>
                     <dependency>
                         <groupId>com.puppycrawl.tools</groupId>
                         <artifactId>checkstyle</artifactId>
-                        <version>7.7</version>
+                        <version>10.26.1</version>
                     </dependency>
                 </dependencies>
                 <configuration>
@@ -117,23 +102,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- plugin>
-			    <groupId>net.orfjackal.retrolambda</groupId>
-			    <artifactId>retrolambda-maven-plugin</artifactId>
-			    <version>2.5.1</version>
-			    <executions>
-			        <execution>
-			            <goals>
-			                <goal>process-main</goal>
-			                <goal>process-test</goal>
-			            </goals>
-			        </execution>
-			    </executions>
-				<configuration>
-					<defaultMethods>true</defaultMethods>
-					<target>1.6</target>
-				</configuration>			    
-			</plugin -->
         </plugins>
 
         <pluginManagement>
@@ -141,7 +109,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>2.9.1</version>
+                    <version>3.11.2</version>
                     <executions>
                         <execution>
                             <id>attach-javadocs</id>
@@ -150,36 +118,6 @@
                             </goals>
                         </execution>
                     </executions>
-                </plugin>
-                <!-- fix for error markers in eclipse because it does not
-                recognize goals process-main  &
-             https://stackoverflow.com/questions/6352208/
-            	This plugin's configuration is used to store Eclipse 
-                m2e settings only. It has no influence on the Maven build itself. -->
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>net.orfjackal.retrolambda</groupId>
-                                        <artifactId>retrolambda-maven-plugin</artifactId>
-                                        <versionRange>[2.5,)</versionRange>
-                                        <goals>
-                                            <goal>process-main</goal>
-                                            <goal>process-test</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <execute />
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>

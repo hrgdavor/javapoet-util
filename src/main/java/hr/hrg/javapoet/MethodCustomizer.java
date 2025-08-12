@@ -1,5 +1,5 @@
 package hr.hrg.javapoet;
 
 public interface MethodCustomizer {
-    void customize(com.squareup.javapoet.MethodSpec.Builder method);
+    void customize(com.palantir.javapoet.MethodSpec.Builder method);
 }

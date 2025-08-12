@@ -1,7 +1,7 @@
 package hr.hrg.javapoet;
 
-import com.squareup.javapoet.FieldSpec;
-import com.squareup.javapoet.MethodSpec;
+import com.palantir.javapoet.FieldSpec;
+import com.palantir.javapoet.MethodSpec;
 
 public interface BeanCustomizer {
     void customize(

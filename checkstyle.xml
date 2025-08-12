@@ -4,10 +4,17 @@
     "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
 
 <module name="Checker">
+  <property name="cacheFile" value="${checkstyle.cache.file}"/>
   <module name="SuppressWarningsFilter"/>
   <module name="NewlineAtEndOfFile"/>
   <module name="FileLength"/>
   <module name="FileTabCharacter"/>
+
+    <!-- Checks for Size Violations.                    -->
+    <!-- See http://checkstyle.sf.net/config_sizes.html -->
+    <module name="LineLength">
+      <property name="max" value="100"/>
+    </module>
 
   <!-- Trailing spaces -->
   <module name="RegexpSingleline">
@@ -28,7 +35,6 @@
   </module>
 
   <module name="TreeWalker">
-    <property name="cacheFile" value="${checkstyle.cache.file}"/>
 
     <!-- Checks for Javadoc comments.                     -->
     <!-- See http://checkstyle.sf.net/config_javadoc.html -->
@@ -62,11 +68,6 @@
     </module>
 
 
-    <!-- Checks for Size Violations.                    -->
-    <!-- See http://checkstyle.sf.net/config_sizes.html -->
-    <module name="LineLength">
-      <property name="max" value="100"/>
-    </module>
     <module name="MethodLength">
       <property name="max" value="160"/>
     </module>

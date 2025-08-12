@@ -4,10 +4,10 @@ import java.util.EnumSet;
 
 import javax.lang.model.element.Modifier;
 
-import com.squareup.javapoet.FieldSpec;
-import com.squareup.javapoet.MethodSpec;
-import com.squareup.javapoet.ParameterSpec;
-import com.squareup.javapoet.TypeSpec;
+import com.palantir.javapoet.FieldSpec;
+import com.palantir.javapoet.MethodSpec;
+import com.palantir.javapoet.ParameterSpec;
+import com.palantir.javapoet.TypeSpec;
 
 public class ModifierBuilder {
     EnumSet<Modifier> mods = EnumSet.noneOf(Modifier.class);

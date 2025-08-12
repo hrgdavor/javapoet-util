@@ -8,16 +8,16 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.TypeMirror;
 
-import com.squareup.javapoet.AnnotationSpec;
-import com.squareup.javapoet.ArrayTypeName;
-import com.squareup.javapoet.ClassName;
-import com.squareup.javapoet.FieldSpec;
-import com.squareup.javapoet.MethodSpec;
-import com.squareup.javapoet.ParameterSpec;
-import com.squareup.javapoet.ParameterizedTypeName;
-import com.squareup.javapoet.TypeName;
-import com.squareup.javapoet.TypeSpec;
-import com.squareup.javapoet.WildcardTypeName;
+import com.palantir.javapoet.AnnotationSpec;
+import com.palantir.javapoet.ArrayTypeName;
+import com.palantir.javapoet.ClassName;
+import com.palantir.javapoet.FieldSpec;
+import com.palantir.javapoet.MethodSpec;
+import com.palantir.javapoet.ParameterSpec;
+import com.palantir.javapoet.ParameterizedTypeName;
+import com.palantir.javapoet.TypeName;
+import com.palantir.javapoet.TypeSpec;
+import com.palantir.javapoet.WildcardTypeName;
 
 public final class PoetUtil {
 
@@ -525,13 +525,13 @@ public final class PoetUtil {
             ParameterCustomizer customizer) {
 
         FieldSpec field = null;
-        for (FieldSpec tmp : spec.fieldSpecs) {
-            if (tmp.name.equals(fieldName))
+        for (FieldSpec tmp : spec.fieldSpecs()) {
+            if (tmp.name().equals(fieldName))
                 field = tmp;
         }
         if (field == null) {
-            throw new RuntimeException("Field " + fieldName + " not found in " + spec.name
-                    + " while adding aprameter for " + method.build().name);
+            throw new RuntimeException("Field " + fieldName + " not found in " + spec.name()
+                    + " while adding aprameter for " + method.build().name());
         } else {
             addSetterParameter(method, field, customizer);
         }
@@ -561,7 +561,7 @@ public final class PoetUtil {
             FieldSpec field,
             ParameterCustomizer customizer) {
 
-        addSetterParameter(method, field.type, field.name, customizer);
+        addSetterParameter(method, field.type(), field.name(), customizer);
     }
 
     public static void addSetterParameter(
